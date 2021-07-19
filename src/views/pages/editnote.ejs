@@ -1,0 +1,23 @@
+<%- layout('../layouts/index.ejs') %>
+
+
+<div class="row">
+  <div class="col-lg-4 offset-lg-4">
+    <div class="card text-center">
+      <h2 class="card-header">Note</h2>
+      <div class="card-body">
+        <form action="/edit_note" method="post">
+          <div class="form-group">
+            <!-- store the id for send to server, is hidden for the client -->
+            <input type="text" name="id" class="d-none" value=<%=note._id %> >
+            <input type="text" name="title" placeholder="Title" class="form-control" value=<%= note.title %> required>
+            <textarea name="content"cols="30" rows="5" placeholder = "Content..."
+              class="form-control mt-2" required><%= note.content %> 
+            </textarea>
+            <button type="submit" class="btn btn-primary w-100 mt-2">save</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

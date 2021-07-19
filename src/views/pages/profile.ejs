@@ -1,0 +1,19 @@
+<%- layout('../layouts/index.ejs') %>
+
+
+<div class="row">
+  <div class="col-md-4 offset-md-4">
+    <div class="card text-center">
+      <h2 class="card-header">
+        PROFILE
+      </h2>
+      <div class="card-body">
+        <h3 class="card-title">Welcome</h3>
+        <p class='fst-italic'>You logged as: <%= user.name %></p>
+      </div>
+      <div class="card-footer">
+        <a href="/add_note" class="btn btn-dark">New note</a>
+      </div>
+    </div>
+  </div>
+</div>

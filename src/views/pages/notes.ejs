@@ -1,0 +1,73 @@
+<%- layout('../layouts/index.ejs') %>
+
+  <h1 class="text-center">Notes</h1>
+
+  <div class="row">
+    <% if(typeof notes!='undefined' ) { %>
+      <% notes.forEach(function(note){ %>
+        <% if(note.content.length > 39) { %>
+          <!-- Modal with card info -->
+          <div class="modal fade" id=<%= 'e'+note._id %> tabindex="-1" aria-labelledby=<%= note._id %> aria-hidden="true">
+            <div class="modal-dialog modal-dialog-scrollable">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id=<%= note._id %> ><%= note.title %></h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <%= note.content %>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% } %>
+        <!-- Notes -->
+        <div class="col-sm-4 mt-2">
+          <div class="card bg-dark text-light text-center">
+            <div class="card-header">NOTE</div>
+            <div class="card-body">
+              <h5 class="card-title">
+                <%= note.title %>
+              </h5>
+              <p class="card-text fst-italic">
+                <%= note.content.length > 39 ? note.content.substring(0, 39) + '...' : note.content  %>
+              </p>
+            </div>
+            <div class="card-footer">
+              <div class="row">
+                <!-- Delete -->
+                <div class="col">
+                  <form action="/delete_note" method="post">
+                    <input type="text" name="id" class="d-none" value=<%=note._id %> >
+                    <button type="submit" style="background: none; border: none;">
+                      <i class="fas fa-trash-alt text-danger h3"></i>
+                    </button>
+                  </form>
+                </div>
+                <!-- Watch -->
+                <% if(note.content.length > 39) { %>
+                  <div class="col">
+                    <button type="button" style="background: none; border: none;" data-bs-toggle="modal" data-bs-target=<%= '#e'+note._id %>>
+                      <i class="fas fa-eye h3 text-primary"></i>
+                    </button>
+                  </div>
+                <% } %>
+                <!-- Edit -->
+                <div class="col">
+                  <form action="/edit_note" method="post">
+                    <input type="text" name="id" class="d-none" value=<%=note._id %> >
+                    <button type="submit" style="background: none; border: none;">
+                      <i class="fas fa-edit text-warning h3"></i>
+                    </button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+  <% }) %>
+    <% } %>
+</div>

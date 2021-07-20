@@ -1,14 +1,14 @@
 {
   "name": "notes-app",
   "version": "1.0.0",
-  "description": "",
+  "description": "Notes App with node js and mongoDB.",
   "main": "index.js",
   "scripts": {
     "start": "node ./src/index.js",
     "dev": "nodemon ./src/index.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Steven Beltran De Leon",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.0.1",
